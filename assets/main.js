@@ -87,8 +87,10 @@
 
   function updateActiveSection(){
     let current = '';
+    const contactEl = document.getElementById('contact');
+    const homeEl = document.getElementById('home');
     const isAtBottom = (window.innerHeight + window.scrollY) >= (document.body.offsetHeight - 100);
-    if (isAtBottom) {
+    if (isAtBottom && contactEl) {
       current = 'contact';
     } else {
       sections.forEach(id => {
@@ -99,10 +101,14 @@
         }
       });
     }
+    if (!current && homeEl) {
+      current = 'home';
+    }
     if (!current) return;
     navLinksItems.forEach(link => {
       link.classList.remove('active');
       if (link.dataset.section === current) link.classList.add('active');
+      else if (normalizeKey(link.getAttribute('href')) === current) link.classList.add('active');
     });
   }
 
