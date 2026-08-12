@@ -18,8 +18,9 @@ html{scroll-behavior:smooth}
 .nav-links{display:flex;align-items:center;gap:2rem}
 .nav-link{color:#a0a0b0;text-decoration:none;font-size:.85rem;font-weight:500;transition:color .3s;position:relative;cursor:pointer}
 .nav-link:hover{color:#e8e8f0}
+.nav-link:active{color:#8b5cf6}
 .nav-link.active{color:#8b5cf6}
-.nav-link.active::after{content:'';position:absolute;bottom:-4px;left:0;width:100%;height:2px;background:#8b5cf6;border-radius:2px}
+.nav-link.active::after{content:'';position:absolute;bottom:-10px;left:50%;transform:translateX(-50%);width:60%;height:6px;background:linear-gradient(90deg,#8b5cf6,#6d28d9);border-radius:6px;transition:all .25s ease}
 .hire-btn{background:linear-gradient(135deg,#8b5cf6,#6d28d9);border:none;color:#fff;padding:.4rem 1.2rem;border-radius:20px;font-weight:600;font-size:.8rem;cursor:pointer;transition:all .3s;font-family:'Inter',sans-serif}
 .hire-btn:hover{box-shadow:0 0 30px rgba(139,92,246,.3);transform:scale(1.05)}
 .menu-toggle{display:none;background:none;border:none;color:#fff;cursor:pointer;font-size:1.5rem}

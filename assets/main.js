@@ -28,6 +28,54 @@
   const sections = ['about','skills','projects','experience','education','contact'];
   const navLinksItems = document.querySelectorAll('.nav-link');
 
+  // ----- PERSISTENT NAV ACTIVE ON CLICK -----
+  function normalizeKey(k) {
+    if (!k) return '';
+    let s = String(k).trim();
+    if (!s) return '';
+    // remove hash
+    if (s.startsWith('#')) s = s.slice(1);
+    // remove query/hash (just in case)
+    s = s.split(/[?#]/)[0];
+    // strip .html
+    s = s.replace(/\.html$/i, '');
+    return s;
+  }
+
+  function setActiveByKey(key) {
+    const normalized = normalizeKey(key);
+    if (!normalized) return;
+    navLinksItems.forEach(link => {
+      link.classList.remove('active');
+      const href = link.getAttribute('href') || '';
+      const ds = link.dataset.section || '';
+      if (normalizeKey(ds) === normalized) link.classList.add('active');
+      else if (normalizeKey(href) === normalized) link.classList.add('active');
+      else if (href.endsWith('#' + normalized)) link.classList.add('active');
+    });
+  }
+
+  // Save clicked nav to localStorage so active state persists across pages
+  navLinksItems.forEach(link => {
+    link.addEventListener('click', (e) => {
+      try {
+        const key = link.dataset.section ? link.dataset.section : link.getAttribute('href');
+        localStorage.setItem('activeNav', normalizeKey(key));
+      } catch (err) {}
+    });
+  });
+
+  // On load, prefer stored active link, fallback to current pathname or hash
+  try {
+    const stored = localStorage.getItem('activeNav');
+    if (stored) setActiveByKey(stored);
+    else {
+      const path = normalizeKey(window.location.pathname.split('/').pop());
+      const hash = normalizeKey(window.location.hash);
+      setActiveByKey(hash || path);
+    }
+  } catch (err) {}
+
   function updateActiveSection(){
     let current = '';
     const isAtBottom = (window.innerHeight + window.scrollY) >= (document.body.offsetHeight - 100);
@@ -93,18 +141,28 @@
   });
 
   // Hire me / view projects / contact primary handled where present (guarded in index.html)
+  // Only attach special scrolling behavior when the target section exists on the current page.
   const hireBtn = document.querySelector('.hire-btn');
-  if (hireBtn) hireBtn.addEventListener('click', () => {
+  if (hireBtn) {
     const contactEl = document.getElementById('contact');
-    if (contactEl) contactEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
-  });
+    if (contactEl) {
+      hireBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        contactEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      });
+    }
+  }
 
   const viewProjectsBtn = Array.from(document.querySelectorAll('.btn-secondary')).find(b => b.getAttribute('href') === '#projects' || (b.textContent && b.textContent.includes('View Projects')));
-  if (viewProjectsBtn) viewProjectsBtn.addEventListener('click', (e) => {
-    e.preventDefault();
+  if (viewProjectsBtn) {
     const proj = document.getElementById('projects');
-    if (proj) proj.scrollIntoView({ behavior: 'smooth', block: 'start' });
-  });
+    if (proj) {
+      viewProjectsBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        proj.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      });
+    }
+  }
 
   const contactPrimary = document.querySelector('.contact-cta .btn-primary');
   if (contactPrimary) contactPrimary.addEventListener('click', () => { window.location.href = 'mailto:kabhins0612@gmail.com'; });
