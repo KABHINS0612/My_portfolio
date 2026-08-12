@@ -65,6 +65,14 @@
     });
   });
 
+  // Ensure clicks on the logo or other anchors that navigate to the home/landing page
+  // also set the active nav key so the underline updates after navigation.
+  document.querySelectorAll('a[href$="index.html"], a[href="/"], .nav-logo').forEach(a => {
+    a.addEventListener('click', (e) => {
+      try { localStorage.setItem('activeNav', 'home'); } catch (err) {}
+    });
+  });
+
   // On load, prefer stored active link, fallback to current pathname or hash
   try {
     const stored = localStorage.getItem('activeNav');
@@ -77,6 +85,10 @@
   } catch (err) {}
 
   function updateActiveSection(){
+    // Only run section-based active updates if at least one section exists on the page
+    const anySectionExists = sections.some(id => document.getElementById(id));
+    if (!anySectionExists) return;
+
     let current = '';
     const isAtBottom = (window.innerHeight + window.scrollY) >= (document.body.offsetHeight - 100);
     if (isAtBottom) {
@@ -90,6 +102,7 @@
         }
       });
     }
+    if (!current) return;
     navLinksItems.forEach(link => {
       link.classList.remove('active');
       if (link.dataset.section === current) link.classList.add('active');
