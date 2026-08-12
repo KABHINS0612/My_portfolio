@@ -39,7 +39,9 @@
     s = s.split(/[?#]/)[0];
     // strip .html
     s = s.replace(/\.html$/i, '');
-    return s;
+    if (s === '' || s.toLowerCase() === 'index' || s.toLowerCase() === './' || s.toLowerCase() === '/') return 'home';
+    if (s.toLowerCase() === 'about') return 'about';
+    return s.toLowerCase();
   }
 
   function setActiveByKey(key) {
@@ -104,7 +106,7 @@
     });
   }
 
-  const isSinglePage = normalizeKey(window.location.pathname.split('/').pop()) === 'index' || window.location.pathname.endsWith('/') || window.location.pathname === '';
+  const isSinglePage = normalizeKey(window.location.pathname.split('/').pop()) === 'home' || window.location.pathname.endsWith('/') || window.location.pathname === '';
 
   if (isSinglePage) {
     window.addEventListener('scroll', updateActiveSection);
