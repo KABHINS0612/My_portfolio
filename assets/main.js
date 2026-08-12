@@ -65,14 +65,6 @@
     });
   });
 
-  // Ensure clicks on the logo or other anchors that navigate to the home/landing page
-  // also set the active nav key so the underline updates after navigation.
-  document.querySelectorAll('a[href$="index.html"], a[href="/"], .nav-logo').forEach(a => {
-    a.addEventListener('click', (e) => {
-      try { localStorage.setItem('activeNav', 'home'); } catch (err) {}
-    });
-  });
-
   // On load, prefer stored active link, fallback to current pathname or hash
   try {
     const stored = localStorage.getItem('activeNav');
@@ -84,11 +76,14 @@
     }
   } catch (err) {}
 
-  function updateActiveSection(){
-    // Only run section-based active updates if at least one section exists on the page
-    const anySectionExists = sections.some(id => document.getElementById(id));
-    if (!anySectionExists) return;
+  // Create an active state for home landing page when clicking logo / index links.
+  document.querySelectorAll('a[href="index.html"], a[href="/"], a[href="./"], a.nav-logo').forEach(el => {
+    el.addEventListener('click', () => {
+      try { localStorage.setItem('activeNav', 'home'); } catch (err) {}
+    });
+  });
 
+  function updateActiveSection(){
     let current = '';
     const isAtBottom = (window.innerHeight + window.scrollY) >= (document.body.offsetHeight - 100);
     if (isAtBottom) {
@@ -109,8 +104,12 @@
     });
   }
 
-  window.addEventListener('scroll', updateActiveSection);
-  updateActiveSection();
+  const isSinglePage = normalizeKey(window.location.pathname.split('/').pop()) === 'index' || window.location.pathname.endsWith('/') || window.location.pathname === '';
+
+  if (isSinglePage) {
+    window.addEventListener('scroll', updateActiveSection);
+    updateActiveSection();
+  }
 
   // ----- SCROLL ANIMATIONS (Intersection Observer) -----
   const observerOptions = { threshold: 0.15, rootMargin: '0px 0px -50px 0px' };
@@ -154,28 +153,18 @@
   });
 
   // Hire me / view projects / contact primary handled where present (guarded in index.html)
-  // Only attach special scrolling behavior when the target section exists on the current page.
   const hireBtn = document.querySelector('.hire-btn');
-  if (hireBtn) {
+  if (hireBtn) hireBtn.addEventListener('click', () => {
     const contactEl = document.getElementById('contact');
-    if (contactEl) {
-      hireBtn.addEventListener('click', (e) => {
-        e.preventDefault();
-        contactEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      });
-    }
-  }
+    if (contactEl) contactEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
 
   const viewProjectsBtn = Array.from(document.querySelectorAll('.btn-secondary')).find(b => b.getAttribute('href') === '#projects' || (b.textContent && b.textContent.includes('View Projects')));
-  if (viewProjectsBtn) {
+  if (viewProjectsBtn) viewProjectsBtn.addEventListener('click', (e) => {
+    e.preventDefault();
     const proj = document.getElementById('projects');
-    if (proj) {
-      viewProjectsBtn.addEventListener('click', (e) => {
-        e.preventDefault();
-        proj.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      });
-    }
-  }
+    if (proj) proj.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
 
   const contactPrimary = document.querySelector('.contact-cta .btn-primary');
   if (contactPrimary) contactPrimary.addEventListener('click', () => { window.location.href = 'mailto:kabhins0612@gmail.com'; });
