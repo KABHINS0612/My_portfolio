@@ -69,17 +69,16 @@
 
   // On load, prefer stored active link, fallback to current pathname or hash
   try {
-    const stored = localStorage.getItem('activeNav');
+    const stored = normalizeKey(localStorage.getItem('activeNav'));
+    const path = normalizeKey(window.location.pathname.split('/').pop());
+    const hash = normalizeKey(window.location.hash);
     if (stored) setActiveByKey(stored);
-    else {
-      const path = normalizeKey(window.location.pathname.split('/').pop());
-      const hash = normalizeKey(window.location.hash);
-      setActiveByKey(hash || path);
-    }
+    else setActiveByKey(hash || path);
   } catch (err) {}
 
-  // Create an active state for home landing page when clicking logo / index links.
-  document.querySelectorAll('a[href="index.html"], a[href="/"], a[href="./"], a.nav-logo').forEach(el => {
+  // Ensure home page loads with Home active, even when opening index directly.
+  const homeLinks = document.querySelectorAll('a[href="index.html"], a[href="/"], a[href="./"], a.nav-logo');
+  homeLinks.forEach(el => {
     el.addEventListener('click', () => {
       try { localStorage.setItem('activeNav', 'home'); } catch (err) {}
     });
