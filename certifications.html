@@ -11,6 +11,28 @@
   <link rel="stylesheet" href="assets/styles.css" />
 </head>
 <body>
+  <div class="app">
+    <!-- Background lighting and floating shapes -->
+    <div class="lighting" aria-hidden="true"></div>
+    <div class="floating-bg" aria-hidden="true">
+      <div class="float-object"></div>
+      <div class="float-object"></div>
+      <div class="float-object"></div>
+      <div class="float-object"></div>
+      <div class="float-shape"></div>
+      <div class="float-shape"></div>
+      <div class="float-shape"></div>
+      <div class="float-shape"></div>
+      <div class="float-shape"></div>
+    </div>
+
+    <!-- AI avatar / accent element -->
+    <div class="ai-avatar" aria-hidden="true">🤖</div>
+
+    <!-- Custom cursor elements -->
+    <div id="cursorDot" class="cursor-dot" aria-hidden="true"></div>
+    <div id="cursorRing" class="cursor-ring" aria-hidden="true"></div>
+
   <nav class="navbar">
     <a href="index.html" class="nav-logo"><span class="logo-icon">K</span><span class="logo-text">Kabhin S</span></a>
     <div class="nav-links">
@@ -30,23 +52,70 @@
         <h2 class="section-title">CERTIFICATIONS</h2>
       </div>
 
-      <div class="cert-list-container">
-        <div class="cert-item">
-          <h4>Full Stack Development Intern — NetGene Technologies</h4>
-          <p>Completed internship with hands-on experience in Java, Spring Boot, React, and REST APIs.</p>
-        </div>
-        <div class="cert-item">
-          <h4>Web Development Fundamentals</h4>
-          <p>Online certification covering HTML, CSS, JavaScript, responsive design, and accessibility basics.</p>
-        </div>
-        <div class="cert-item">
-          <h4>Database Basics</h4>
-          <p>Introductory certification on relational databases, SQL queries, and basic schema design.</p>
+
+      <div class="certificate-preview-section">
+        <div class="certificate-preview-grid">
+          <figure class="certificate-preview-card">
+            <img src="images/UX & UI Design.jpg" alt="UX and UI Design certificate" />
+            <figcaption>UX & UI Design</figcaption>
+            <p class="certificate-note">Developed a strong understanding of user-centered design, interface planning, and creating engaging digital experiences.</p>
+            <a class="download-certificate-btn" href="UX & UI Design.pdf" download>
+              <i class="fa-solid fa-download"></i> Download Certificate
+            </a>
+          </figure>
+
+          <figure class="certificate-preview-card">
+            <img src="images/German Certificate.jpg" alt="German Certificate" />
+            <figcaption>German Certificate</figcaption>
+            <p class="certificate-note">Completed language proficiency certification demonstrating competence in German language communication skills.</p>
+            <a class="download-certificate-btn" href="German certifiate.pdf" download>
+              <i class="fa-solid fa-download"></i> Download Certificate
+            </a>
+          </figure>
+
+          <figure class="certificate-preview-card">
+            <img src="images/Cryptography and network security.jpg" alt="Cryptography and Network Security certificate" />
+            <figcaption>Cryptography & Security</figcaption>
+            <p class="certificate-note">Explored encryption, network protection, and security principles used in secure digital systems.</p>
+            <a class="download-certificate-btn" href="Cryptography and network security .pdf" download>
+              <i class="fa-solid fa-download"></i> Download Certificate
+            </a>
+          </figure>
+
+          <figure class="certificate-preview-card">
+            <img src="images/Cloud Computing.jpg" alt="Cloud Computing certificate" />
+            <figcaption>Cloud Computing</figcaption>
+            <p class="certificate-note">Strengthened my understanding of cloud architecture, scalability, and modern distributed systems.</p>
+            <a class="download-certificate-btn" href="Cloud Computing.pdf" download>
+              <i class="fa-solid fa-download"></i> Download Certificate
+            </a>
+          </figure>
+
+          <figure class="certificate-preview-card">
+            <img src="images/Semiconductor devices for next generation.jpg" alt="Semiconductor Devices for Next Generation certificate" />
+            <figcaption>Semiconductor Devices</figcaption>
+            <p class="certificate-note">Completed a focused course on semiconductor fundamentals and next-generation device technology.</p>
+            <a class="download-certificate-btn" href="Semiconductor devices for next generation .pdf" download>
+              <i class="fa-solid fa-download"></i> Download Certificate
+            </a>
+          </figure>
+
+          <figure class="certificate-preview-card">
+            <img src="images/Biomedical signal processing.jpg" alt="Biomedical Signal Processing certificate" />
+            <figcaption>Biomedical Signal Processing</figcaption>
+            <p class="certificate-note">Learned how signal analysis and data-driven approaches are applied in biomedical and healthcare technologies.</p>
+            <a class="download-certificate-btn" href="Biomedical signal processing .pdf" download>
+              <i class="fa-solid fa-download"></i> Download Certificate
+            </a>
+          </figure>
         </div>
       </div>
 
+    </section>
+
     <footer class="footer">© 2026 Kabhin S • Designed &amp; Developed by Kabhin S</footer>
   </main>
+  </div>
 
   <script src="assets/main.js"></script>
 </body>

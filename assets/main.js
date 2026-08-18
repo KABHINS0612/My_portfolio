@@ -175,7 +175,10 @@
   });
 
   const contactPrimary = document.querySelector('.contact-cta .btn-primary');
-  if (contactPrimary) contactPrimary.addEventListener('click', () => { window.location.href = 'mailto:kabhins0612@gmail.com'; });
+  if (contactPrimary) contactPrimary.addEventListener('click', (e) => {
+    e.preventDefault();
+    window.open('https://mail.google.com/mail/?view=cm&fs=1&to=kabhins0612@gmail.com', '_blank');
+  });
 
   // ----- Cursor & background interaction (guarded) -----
   const cursorDot = document.getElementById('cursorDot');

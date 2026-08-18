@@ -11,6 +11,28 @@
   <link rel="stylesheet" href="assets/styles.css" />
 </head>
 <body>
+  <div class="app">
+    <!-- Background lighting and floating shapes -->
+    <div class="lighting" aria-hidden="true"></div>
+    <div class="floating-bg" aria-hidden="true">
+      <div class="float-object"></div>
+      <div class="float-object"></div>
+      <div class="float-object"></div>
+      <div class="float-object"></div>
+      <div class="float-shape"></div>
+      <div class="float-shape"></div>
+      <div class="float-shape"></div>
+      <div class="float-shape"></div>
+      <div class="float-shape"></div>
+    </div>
+
+    <!-- AI avatar / accent element -->
+    <div class="ai-avatar" aria-hidden="true">🤖</div>
+
+    <!-- Custom cursor elements -->
+    <div id="cursorDot" class="cursor-dot" aria-hidden="true"></div>
+    <div id="cursorRing" class="cursor-ring" aria-hidden="true"></div>
+
   <nav class="navbar">
     <a href="index.html" class="nav-logo"><span class="logo-icon">K</span><span class="logo-text">Kabhin S</span></a>
     <div class="nav-links">
@@ -34,7 +56,7 @@
         <div class="project-card">
           <div class="project-header">
             <h4>Orphanage Management System</h4>
-            <a href="https://github.com/KABHINS0612/Orphanage-Management" target="_blank" class="project-link" rel="noopener noreferrer">
+            <a href="https://github.com/KABHINS0612/Orphanage-Management" target="_blank" class="project-link" rel="noopener noreferrer" aria-label="GitHub Repository">
               <i class="fab fa-github"></i>
             </a>
           </div>
@@ -46,7 +68,9 @@
         <div class="project-card">
           <div class="project-header">
             <h4>Attendance Maintenance System</h4>
-            <a href="https://github.com/KABHINS0612/ATTEDENCE-MAINTENANCE" target="_blank" class="project-link" rel="noopener noreferrer"><i class="fab fa-github"></i></a>
+            <a href="https://github.com/KABHINS0612/ATTEDENCE-MAINTENANCE" target="_blank" class="project-link" rel="noopener noreferrer" aria-label="GitHub Repository">
+              <i class="fab fa-github"></i>
+            </a>
           </div>
           <p class="project-desc">AI-powered Attendance System using Java, Spring Boot, React, ESP32, and Firebase. Enables biometric authentication, real-time synchronization, and RESTful API integration.</p>
           <div class="project-tech"><span class="tech-tag">Spring Boot</span><span class="tech-tag">React</span><span class="tech-tag">Firebase</span><span class="tech-tag">ESP32</span></div>
@@ -56,7 +80,9 @@
         <div class="project-card">
           <div class="project-header">
             <h4>Sleep Disorder Detection</h4>
-            <a href="https://github.com/KABHINS0612/sleep_apnea-main" target="_blank" class="project-link" rel="noopener noreferrer"><i class="fab fa-github"></i></a>
+            <a href="https://github.com/KABHINS0612/sleep_apnea-main" target="_blank" class="project-link" rel="noopener noreferrer" aria-label="GitHub Repository">
+              <i class="fab fa-github"></i>
+            </a>
           </div>
           <p class="project-desc">Web-based Sleep Disorder Detection System using React and Flask. Analyzes user health and lifestyle data with machine learning models to predict sleep apnea risk and provide basic lifestyle recommendations.</p>
           <div class="project-tech"><span class="tech-tag">React</span><span class="tech-tag">Flask</span><span class="tech-tag">Python</span></div>
@@ -68,6 +94,7 @@
 
     <footer class="footer">© 2026 Kabhin S • Designed &amp; Developed by Kabhin S</footer>
   </main>
+  </div>
   <script src="assets/main.js"></script>
 </body>
 </html>
