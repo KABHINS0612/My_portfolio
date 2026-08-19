@@ -14,7 +14,7 @@ p,li,.about-text p,.project-desc,.hero-desc,.certificate-note,.contact-item,.met
 /* ----- NAVBAR ----- */
 .navbar{position:fixed;top:0;left:0;right:0;padding:1rem 4rem;display:flex;justify-content:space-between;align-items:center;background:rgba(10,10,15,0.7);-webkit-backdrop-filter:blur(20px);backdrop-filter:blur(20px);border-bottom:1px solid rgba(255,255,255,0.04);z-index:100;transition:all .3s}
 .nav-logo{display:flex;align-items:center;gap:.8rem}
-.logo-icon{width:36px;height:36px;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#8b5cf6,#6d28d9);border-radius:10px;font-weight:700;font-size:1.1rem;color:#fff}
+.logo-icon{width:38px;height:38px;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#8b5cf6,#6d28d9);border-radius:10px;font-weight:800;font-size:0.95rem;letter-spacing:-0.5px;color:#fff}
 .logo-text{font-weight:700;font-size:1.3rem;letter-spacing:-.5px}
 .time-badge{display:flex;align-items:center;gap:4px;font-size:.7rem;background:rgba(255,255,255,0.06);padding:4px 10px;border-radius:20px;color:#a0a0b0}
 .nav-links{display:flex;align-items:center;gap:2rem}
